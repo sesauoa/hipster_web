@@ -1,1 +1,3 @@
-# hipster_web
+# SESA Hipster Web Shadow Class
+
+TODO: Everything
