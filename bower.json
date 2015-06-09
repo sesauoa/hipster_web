@@ -1,0 +1,23 @@
+{
+  "name": "hipster_web",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ausesa/hipster_web",
+  "authors": [
+    "Chris Morgan <chris.j.r.morgan@gmail.com>"
+  ],
+  "moduleType": [
+    "es6",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4"
+  }
+}
