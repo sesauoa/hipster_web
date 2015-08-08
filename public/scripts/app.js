@@ -29,6 +29,11 @@ function mainController($scope, $http) {
     }
   ];
 
+  $http.get('/api/todo').then(
+  function (data) {
+    $scope.todos = data.data;
+  });
+
   $scope.createTodo = function () {
     var newTodo = {
       name: $scope.newItemName,
@@ -41,12 +46,10 @@ function mainController($scope, $http) {
     console.log('New todo: ', newTodo);
     $scope.newItemName = '';
 
-    console.log('New todo: ', newTodo);
-
     $http.post('/api/todo', newTodo)
       .success(function (data) {
         console.log('Todo saved successfully: ', data);
-        newTodo.id = data.id
+        newTodo._id = data._id
       })
       .error(function (data) {
         console.error('Failed to save todo: ', data)
