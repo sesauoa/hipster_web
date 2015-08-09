@@ -29,6 +29,13 @@ var todoSchema = new mongoose.Schema({
 todoSchema.methods.complete = function (datetimeCompleted) {
   this.datetimeCompleted = datetimeCompleted || time.now();
   this.completed = true;
+  this.save();
+};
+
+todoSchema.methods.uncomplete = function () {
+  this.datetimeCompleted = null;
+  this.completed = false;
+  this.save();
 };
 
 // Models
@@ -53,6 +60,20 @@ app.post('/api/todo', function (req, res) {
     }
     res.send();
   })
+});
+
+app.post('/api/todo/:id/:action', function (req, res) {
+  var query = Todo.where({_id: mongoose.Types.ObjectId(req.params.id)});
+  query.findOne(function (err, todo) {
+      switch (req.params.action) {
+        case 'complete':
+          todo.complete(req.body.datetimeCompleted);
+          break;
+        case 'uncomplete':
+          todo.uncomplete();
+      }
+      res.send();
+    });
 });
 
 // Fire this baby up
